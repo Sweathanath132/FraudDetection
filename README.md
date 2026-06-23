@@ -1,4 +1,4 @@
-# Real-Time Fraud Detection System (MLOps)
+ Real-Time Fraud Detection System (MLOps)
 
 End-to-end, reproducible ML pipeline that scores card transactions for fraud in
 real time.
@@ -8,7 +8,7 @@ synthetic data → feature engineering → train (RandomForest) → MLflow track
         → joblib model → FastAPI /score endpoint → Docker image
 ```
 
-## Run it (5 commands)
+ Run it (5 commands)
 ```bash
 pip install -r requirements.txt
 python src/generate_data.py        # 50k transactions, ~1.2% fraud
@@ -23,7 +23,7 @@ curl -X POST http://127.0.0.1:8000/score -H "Content-Type: application/json" \
 ```
 View experiments: `mlflow ui` → http://127.0.0.1:5000
 
-## Why these choices (interview-ready)
+ Why these choices 
 - **Class imbalance (~1% fraud):** plain accuracy is misleading, so we use
   `class_weight="balanced"` and evaluate with **PR-AUC, precision, recall**, plus
   the confusion matrix. A "predict no-fraud always" baseline gets ~99% accuracy
@@ -35,7 +35,7 @@ View experiments: `mlflow ui` → http://127.0.0.1:5000
 - **Threshold, not just label:** the model outputs a probability; the decision
   threshold is a *business* lever balancing fraud caught vs. customer friction.
 
-## Where DVC fits
+Where DVC fits
 DVC versions large data/model files outside Git (Git tracks only small `.dvc`
 pointer files):
 ```bash
